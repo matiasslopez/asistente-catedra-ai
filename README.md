@@ -12,9 +12,27 @@ Proyecto final del curso **AI First Product Manager** (Product Hub): PRD y MVP c
 | `design-system/` | Tokens (`tokens.json`), guía de marca (`README.md`) y componentes base (`components/`). Azul marino, negro y blanco; familia tipográfica Source. |
 | `landing/` | Primer borrador de la landing, hecho en Claude Design. |
 
-## Probar el prototipo
+## Cómo funciona la IA
 
-Abrí `prototipo/index.html` en el navegador. La corrección de consultas SQL funciona sin servidor. Las funciones con IA (corrección de respuestas abiertas, feedback redactado por la IA, recomendaciones) usaban la integración del entorno de artifacts de Claude; fuera de ese entorno el prototipo cae al feedback cargado por el docente.
+El prototipo usa la API de Claude a través de una ruta propia, `/api/claude` (`api/claude.js`). La clave de la API queda en el servidor y el navegador nunca la ve. La IA redacta el feedback de corrección, corrige respuestas abiertas, genera ejercicios y escribe las recomendaciones para el docente. La corrección de SQL no depende de la IA: se ejecuta en el navegador con SQLite.
+
+Si la IA no está configurada, el prototipo sigue funcionando con el feedback que cargó el docente.
+
+La ruta limita el largo de cada pedido y la cantidad de pedidos por minuto, y no deja elegir el modelo desde el navegador.
+
+## Correrlo en tu compu
+
+1. Sacá una clave en [console.anthropic.com](https://console.anthropic.com) (API Keys).
+2. Copiá `.env.example` como `.env` y pegá la clave en `ANTHROPIC_API_KEY`.
+3. Con Node 20.6 o más nuevo: `npm start` y abrí http://localhost:3000.
+
+## Publicarlo en Vercel
+
+1. En [vercel.com](https://vercel.com), **Add New › Project** e importá este repositorio. No hace falta configurar build.
+2. En **Settings › Environment Variables**, agregá `ANTHROPIC_API_KEY` (y `ANTHROPIC_MODEL` si querés otro modelo).
+3. Deploy. Cada cambio que entra a `main` se publica solo.
+
+Ponele un límite de gasto mensual a la clave en la consola de Anthropic: la página es pública y cualquiera que la abra consume IA.
 
 ## Documentos
 

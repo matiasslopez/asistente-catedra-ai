@@ -18,5 +18,7 @@ Usar siempre `design-system/`: leer primero `design-system/README.md`, tomar col
 
 ## Estructura
 
-- `prototipo/index.html`: prototipo funcional de referencia (un solo archivo).
+- `prototipo/index.html`: prototipo funcional de referencia (un solo archivo). Toda llamada a la IA pasa por `sample()` / `sample.json()`, que usa `/api/claude`.
+- `api/claude.js`: única puerta a la API de Claude. La clave (`ANTHROPIC_API_KEY`) vive solo en el servidor; nunca la pongas en código del navegador ni la subas al repo. Mantené los límites de largo y de pedidos por minuto.
+- `server.js`: servidor local sin dependencias (`npm start`). En producción, Vercel sirve los estáticos y `api/claude.js` como función.
 - `landing/landing-draft.dc.html`: borrador visual de la landing (formato de Claude Design; usarlo como referencia de contenido y layout, no como código final).

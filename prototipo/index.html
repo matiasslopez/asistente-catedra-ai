@@ -326,8 +326,30 @@ function comparar(stu, exp, ordenado){
 }
 
 // ---------- IA ----------
+// Dentro de Claude (artifact) usa la integración nativa; fuera de Claude, la ruta /api/claude del servidor.
 let sample = null;
-(async () => { try { sample = window.claude ? await window.claude.use("sample") : null; } catch(e){ sample = null; } })();
+function sampleServidor(){
+  async function pedir(prompt, json){
+    const r = await fetch("/api/claude", {method:"POST", headers:{"Content-Type":"application/json"}, body: JSON.stringify({prompt, json})});
+    const d = await r.json().catch(() => ({}));
+    if (!r.ok) throw new Error(d.error || "La IA no respondió.");
+    return d.text || "";
+  }
+  const fn = async (prompt) => ({ text: await pedir(prompt, false) });
+  fn.json = async (prompt) => {
+    const t = await pedir(prompt, true);
+    const m = t.match(/[\[{][\s\S]*[\]}]/);
+    return JSON.parse(m ? m[0] : t);
+  };
+  return fn;
+}
+(async () => {
+  try {
+    if (window.claude) { sample = await window.claude.use("sample"); return; }
+    const r = await fetch("/api/claude");
+    if (r.ok && (await r.json()).disponible) sample = sampleServidor();
+  } catch(e){ sample = null; }
+})();
 const sinEsp = s => String(s).toLowerCase().replace(/\s+/g, "").replace(/;$/, "");
 function revelaRespuesta(t, ej){
   if (ej.tipo === "sql"){

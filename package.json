@@ -1,0 +1,13 @@
+{
+  "name": "asistente-catedra-ai",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Asistente de cátedra con IA: feedback de corrección para alumnos y tablero para el docente.",
+  "scripts": {
+    "start": "node --env-file=.env server.js"
+  },
+  "engines": {
+    "node": ">=20.6"
+  }
+}
