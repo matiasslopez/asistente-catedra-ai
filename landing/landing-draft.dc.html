@@ -1,0 +1,209 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Asistente de Cátedra AI</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&amp;family=Source+Sans+3:wght@400;600&amp;family=Source+Code+Pro:wght@400&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#14254a}a:hover{color:#0b1733}
+.serif{font-family:'Source Serif 4',Georgia,serif;font-weight:600;text-wrap:balance}
+.wrap{max-width:1120px;margin:0 auto;padding-left:32px;padding-right:32px;box-sizing:border-box}
+.label{font-size:12px;line-height:16px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#4a5263}
+@media (max-width:820px){.wrap{padding-left:16px;padding-right:16px}.cols{grid-template-columns:minmax(0,1fr)!important}.hero h1{font-size:38px!important;line-height:44px!important}.navlinks{display:none!important}}
+</style>
+</helmet>
+<div style="background: #ffffff; color: #0b0d12; font-family: 'Source Sans 3', 'Segoe UI', system-ui, sans-serif; font-size: 16px; line-height: 26px">
+
+  <header style="border-bottom: 1px solid #dde2ea">
+    <div class="wrap" style="display: flex; align-items: center; justify-content: space-between; gap: 24px; height: 72px">
+      <span class="serif" style="font-size: 22px; line-height: 28px">Asistente de Cátedra AI</span>
+      <nav class="navlinks" style="display: flex; gap: 32px; font-size: 15px">
+        <a href="#como" style="color: #0b0d12; text-decoration: none">Cómo funciona</a>
+        <a href="#docentes" style="color: #0b0d12; text-decoration: none">Para docentes</a>
+        <a href="#piloto" style="color: #0b0d12; text-decoration: none">Piloto</a>
+      </nav>
+      <a href="#piloto" style="display: inline-flex; align-items: center; min-height: 44px; padding: 0 20px; border-radius: 4px; background: #14254a; color: #ffffff; font-weight: 600; font-size: 15px; text-decoration: none">Probar con mi curso</a>
+    </div>
+  </header>
+
+  <section class="hero" style="padding: 96px 0 112px">
+    <div class="wrap cols" style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 64px; align-items: center">
+      <div style="display: flex; flex-direction: column; gap: 24px">
+        <span class="label">Para docentes universitarios</span>
+        <h1 class="serif" style="margin: 0; font-size: 52px; line-height: 58px; letter-spacing: -0.015em">Más práctica para tus alumnos, corregida con tu criterio</h1>
+        <p style="margin: 0; font-size: 20px; line-height: 30px; color: #4a5263; max-width: 52ch">Vos definís los ejercicios y cómo se corrigen. La IA acompaña a cada alumno con feedback hasta la respuesta correcta, sin dársela, y te cuenta qué temas reforzar.</p>
+        <div style="display: flex; flex-wrap: wrap; gap: 12px; padding-top: 8px">
+          <a href="#piloto" style="display: inline-flex; align-items: center; min-height: 48px; padding: 0 24px; border-radius: 4px; background: #14254a; color: #ffffff; font-weight: 600; text-decoration: none">Sumar mi cátedra al piloto</a>
+          <a href="#como" style="display: inline-flex; align-items: center; min-height: 48px; padding: 0 24px; border-radius: 4px; border: 1px solid #14254a; color: #14254a; font-weight: 600; text-decoration: none">Ver cómo funciona</a>
+        </div>
+      </div>
+
+      <div style="border: 1px solid #dde2ea; border-radius: 8px; box-shadow: 0 8px 24px -6px #0b173329, 0 2px 6px #0b17331a; background: #ffffff; overflow: hidden">
+        <div style="display: flex; justify-content: space-between; align-items: center; padding: 12px 20px; border-bottom: 1px solid #dde2ea; background: #f4f6f9">
+          <span class="label">Guía 3 · Ejercicio 4</span>
+          <span style="font-size: 12px; line-height: 20px; font-weight: 600; padding: 0 8px; border-radius: 2px; background: #e8edf6; color: #14254a">Respuesta del docente</span>
+        </div>
+        <div style="padding: 20px; display: flex; flex-direction: column; gap: 16px">
+          <p style="margin: 0; font-weight: 600">Listá todas las materias con su cantidad de inscriptos, incluidas las que no tienen ninguno.</p>
+          <pre style="margin: 0; padding: 12px 16px; border: 1px solid #7c869a; border-radius: 4px; background: #f4f6f9; font-family: 'Source Code Pro', ui-monospace, monospace; font-size: 13px; line-height: 21px; white-space: pre-wrap">SELECT m.nombre, COUNT(*)
+FROM materias m
+JOIN inscripciones i ON i.materia_id = m.id
+GROUP BY m.nombre;</pre>
+          <div style="border-top: 2px solid #a12a2a; padding-top: 14px; display: flex; flex-direction: column; gap: 6px">
+            <div style="display: flex; gap: 12px; align-items: center">
+              <span class="label">Feedback de corrección</span>
+              <span style="font-size: 12px; line-height: 20px; font-weight: 600; padding: 0 8px; border-radius: 2px; background: #f9e7e7; color: #a12a2a">Incorrecta</span>
+            </div>
+            <p style="margin: 0">El JOIN que usaste descarta las materias sin inscriptos. Fijate si aparecen todas las del enunciado.</p>
+            <span style="font-size: 14px; color: #4a5263">Intento 2 · 2 feedbacks</span>
+          </div>
+          <div style="background: #e8edf6; border-radius: 4px; padding: 14px 16px; display: flex; flex-direction: column; gap: 4px">
+            <span class="label" style="color: #14254a">Consejo</span>
+            <p style="margin: 0">Pensá qué tipo de JOIN conserva las filas de la tabla de la izquierda aunque no tengan coincidencia.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section style="background: #f4f6f9; padding: 96px 0; border-top: 1px solid #dde2ea; border-bottom: 1px solid #dde2ea">
+    <div class="wrap" style="display: flex; flex-direction: column; gap: 48px">
+      <h2 class="serif" style="margin: 0; font-size: 36px; line-height: 44px; max-width: 24ch">La práctica crece, la corrección no da abasto</h2>
+      <div class="cols" style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 32px">
+        <div style="border-top: 1px solid #0b0d12; padding-top: 16px; display: flex; flex-direction: column; gap: 8px">
+          <h3 style="margin: 0; font-size: 18px; line-height: 26px">El feedback llega tarde</h3>
+          <p style="margin: 0; color: #4a5263">Las guías se resuelven en casa y se corrigen, con suerte, en la clase siguiente.</p>
+        </div>
+        <div style="border-top: 1px solid #0b0d12; padding-top: 16px; display: flex; flex-direction: column; gap: 8px">
+          <h3 style="margin: 0; font-size: 18px; line-height: 26px">No ves en qué se traba el curso</h3>
+          <p style="margin: 0; color: #4a5263">Te enterás de qué temas no se entendieron cuando corregís el parcial.</p>
+        </div>
+        <div style="border-top: 1px solid #0b0d12; padding-top: 16px; display: flex; flex-direction: column; gap: 8px">
+          <h3 style="margin: 0; font-size: 18px; line-height: 26px">Un chat les da la respuesta</h3>
+          <p style="margin: 0; color: #4a5263">Copian una solución completa, sin tu criterio, y se saltean el aprendizaje.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="como" style="padding: 96px 0">
+    <div class="wrap" style="display: flex; flex-direction: column; gap: 48px">
+      <div style="display: flex; flex-direction: column; gap: 12px">
+        <span class="label">Cómo funciona</span>
+        <h2 class="serif" style="margin: 0; font-size: 36px; line-height: 44px">Vos ponés el criterio. La IA hace el trabajo repetitivo.</h2>
+      </div>
+      <div class="cols" style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 32px">
+        <div style="display: flex; flex-direction: column; gap: 12px">
+          <span class="serif" style="font-size: 40px; line-height: 44px; color: #14254a">1</span>
+          <h3 style="margin: 0; font-size: 18px; line-height: 26px">Creás el ejercicio</h3>
+          <p style="margin: 0; color: #4a5263">Lo genera la IA y vos lo validás, escribís la respuesta, o sumás criterios de corrección. Nada se publica sin tu aprobación.</p>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 12px">
+          <span class="serif" style="font-size: 40px; line-height: 44px; color: #14254a">2</span>
+          <h3 style="margin: 0; font-size: 18px; line-height: 26px">El alumno practica</h3>
+          <p style="margin: 0; color: #4a5263">Recibe feedback de corrección en cada intento, más concreto cada vez, hasta llegar solo a la respuesta correcta.</p>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 12px">
+          <span class="serif" style="font-size: 40px; line-height: 44px; color: #14254a">3</span>
+          <h3 style="margin: 0; font-size: 18px; line-height: 26px">Ves cómo va tu curso</h3>
+          <p style="margin: 0; color: #4a5263">Quién practicó, cuánto feedback necesitó y qué temas conviene reforzar en la próxima clase.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="docentes" style="padding: 0 0 96px">
+    <div class="wrap cols" style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 64px; align-items: start">
+      <div style="display: flex; flex-direction: column; gap: 16px">
+        <span class="label">Tablero del docente</span>
+        <h2 class="serif" style="margin: 0; font-size: 36px; line-height: 44px">Antes de cada clase, sabés qué reforzar y a quién acompañar</h2>
+        <p style="margin: 0; color: #4a5263">Cada recomendación muestra los datos de los que sale. Vos decidís qué hacer.</p>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 24px">
+        <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px">
+          <div style="border-top: 1px solid #dde2ea; padding-top: 12px; display: flex; flex-direction: column; gap: 4px">
+            <span class="label">Practicaron</span>
+            <span class="serif" style="font-size: 40px; line-height: 44px">30 <span style="font-family: 'Source Sans 3', sans-serif; font-weight: 400; font-size: 16px; color: #4a5263">de 32</span></span>
+            <span style="font-size: 14px; color: #4a5263">Esta semana</span>
+          </div>
+          <div style="border-top: 1px solid #dde2ea; padding-top: 12px; display: flex; flex-direction: column; gap: 4px">
+            <span class="label">Feedback</span>
+            <span class="serif" style="font-size: 40px; line-height: 44px">1,7</span>
+            <span style="font-size: 14px; color: #4a5263">Hasta la correcta</span>
+          </div>
+          <div style="border-top: 1px solid #dde2ea; padding-top: 12px; display: flex; flex-direction: column; gap: 4px">
+            <span class="label">Sin practicar</span>
+            <span class="serif" style="font-size: 40px; line-height: 44px">2</span>
+            <span style="font-size: 14px; color: #a12a2a">Conviene contactarlos</span>
+          </div>
+        </div>
+        <blockquote style="margin: 0; padding: 20px 24px; background: #e8edf6; border-radius: 4px; display: flex; flex-direction: column; gap: 8px">
+          <span class="label" style="color: #14254a">Recomendación de la IA</span>
+          <p style="margin: 0">El 60% del curso necesitó más de tres correcciones en LEFT JOIN y valores nulos. Sugerencia: repasar la diferencia entre JOIN y LEFT JOIN con un ejemplo en clase.</p>
+        </blockquote>
+        <span style="font-size: 14px; color: #4a5263">Datos de ejemplo.</span>
+      </div>
+    </div>
+  </section>
+
+  <section style="background: #f4f6f9; padding: 96px 0; border-top: 1px solid #dde2ea">
+    <div class="wrap" style="display: flex; flex-direction: column; gap: 32px">
+      <h2 class="serif" style="margin: 0; font-size: 36px; line-height: 44px">¿Por qué no un chat general?</h2>
+      <div style="overflow-x: auto">
+        <table style="width: 100%; min-width: 640px; border-collapse: collapse; font-size: 15px; line-height: 24px">
+          <thead>
+            <tr style="text-align: left; border-bottom: 1px solid #0b0d12">
+              <th style="padding: 12px 16px 12px 0; width: 28%"></th>
+              <th style="padding: 12px 16px; color: #4a5263; font-weight: 600">Chat general</th>
+              <th style="padding: 12px 16px; color: #14254a; font-weight: 600">Asistente de Cátedra AI</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr style="border-bottom: 1px solid #dde2ea"><td style="padding: 14px 16px 14px 0; font-weight: 600">Criterio de corrección</td><td style="padding: 14px 16px; color: #4a5263">El suyo</td><td style="padding: 14px 16px">El de tu cátedra</td></tr>
+            <tr style="border-bottom: 1px solid #dde2ea"><td style="padding: 14px 16px 14px 0; font-weight: 600">Qué recibe el alumno</td><td style="padding: 14px 16px; color: #4a5263">La respuesta completa</td><td style="padding: 14px 16px">Feedback hasta que llega solo</td></tr>
+            <tr style="border-bottom: 1px solid #dde2ea"><td style="padding: 14px 16px 14px 0; font-weight: 600">Respuestas verificables</td><td style="padding: 14px 16px; color: #4a5263">Las opina</td><td style="padding: 14px 16px">Las comprueba, por ejemplo ejecutando la consulta SQL</td></tr>
+            <tr><td style="padding: 14px 16px 14px 0; font-weight: 600">El docente</td><td style="padding: 14px 16px; color: #4a5263">No ve nada</td><td style="padding: 14px 16px">Ve quién practicó y qué reforzar</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section id="piloto" style="background: #0b1733; color: #ffffff; padding: 96px 0">
+    <div class="wrap cols" style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 64px; align-items: center">
+      <div style="display: flex; flex-direction: column; gap: 16px">
+        <h2 class="serif" style="margin: 0; font-size: 36px; line-height: 44px">Sumá tu cátedra al piloto</h2>
+        <p style="margin: 0; font-size: 18px; line-height: 28px; color: #c4d3f0">Empezamos con Bases de Datos y sumamos materias con práctica. Te acompañamos a armar la primera guía.</p>
+      </div>
+      <form style="display: flex; flex-direction: column; gap: 12px">
+        <label for="mail" style="font-size: 14px; font-weight: 600">Tu mail institucional</label>
+        <div style="display: flex; flex-wrap: wrap; gap: 12px">
+          <input id="mail" type="email" placeholder="nombre@universidad.edu.ar" style="flex: 1 1 260px; min-height: 48px; box-sizing: border-box; padding: 0 16px; border-radius: 4px; border: 1px solid #ffffff; background: #ffffff; color: #0b0d12; font: inherit">
+          <button type="button" style="min-height: 48px; padding: 0 24px; border-radius: 4px; border: 1px solid #ffffff; background: transparent; color: #ffffff; font: inherit; font-weight: 600; cursor: pointer">Quiero probarlo</button>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <footer style="padding: 32px 0">
+    <div class="wrap" style="display: flex; flex-wrap: wrap; justify-content: space-between; gap: 16px; font-size: 14px; color: #4a5263">
+      <span class="serif" style="font-size: 16px; color: #0b0d12">Asistente de Cátedra AI</span>
+      <span>Proyecto del curso AI First Product Manager · Product Hub</span>
+    </div>
+  </footer>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":4200}}'>
+class Component extends DCLogic {
+  renderVals() { return {}; }
+}
+</script>
+</body>
+</html>
